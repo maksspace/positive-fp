@@ -32,10 +32,12 @@ const currencyConvertes = currenciesRates.map(
 const totalCartBuilder = converters => v => 
 	converters.reduce((total, cv) => ({
 		...total,
-        	[cv.currency]: cv.convert(v)	
+        [cv.currency]: cv.convert(v)	
 	}), 
 {});
 	 
 const getAbstractTotal = compose(totalCartBuilder(currencyConvertes), sum, mapCartPrices);
-console.log('total:', getAbstractTotal(selectedCart))
+const totalCartPrice = getAbstractTotal(selectedCart);
+
+console.log(totalCartPrice);
 
